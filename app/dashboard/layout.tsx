@@ -94,7 +94,7 @@ export default function DashboardLayout({
               <div className="flex-shrink-0 flex items-center ml-2 lg:ml-0">
                 <LayoutDashboard className="w-8 h-8" style={{ color: 'var(--text-primary)' }} aria-hidden="true" />
                 <span className="ml-2 text-xl font-bold" style={{ color: 'var(--text-primary)' }}>
-                  Ethron
+                  Primetrade.ai
                 </span>
               </div>
             </div>

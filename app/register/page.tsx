@@ -71,14 +71,16 @@ export default function RegisterPage() {
         <div className="w-full max-w-md">
           {/* Logo */}
           <div className="mb-12">
-            
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Join Ethron.<br />
-              Start Working Smarter.
+            <h1
+              className="text-4xl md:text-5xl font-bold mb-4 leading-tight"
+              style={{ color: 'var(--text-primary)' }}
+            >
+              Primetrade.ai Venture Studio
             </h1>
-            
+
             <p className="text-lg mb-8 leading-relaxed" style={{ color: 'var(--text-primary)' }}>
-              Create your account and experience the power of AI-driven workflow automation.
+              Primetrade.ai is a niche AI and blockchain venture studio, where we help multiple
+              product startups grow in cutting-edge fields of AI and blockchain.
             </p>
           </div>
 

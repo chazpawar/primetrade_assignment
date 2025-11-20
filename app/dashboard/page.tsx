@@ -93,10 +93,11 @@ export default function DashboardPage() {
       {/* Welcome Header */}
       <div>
         <h1 className="text-3xl font-bold" style={{ color: 'var(--text-primary)' }}>
-          Welcome back, {user?.name || "User"}!
+            Welcome back to Primetrade.ai, {user?.name || "User"}!
         </h1>
         <p className="mt-2" style={{ color: 'var(--text-secondary)' }}>
-          Here's what's happening with your account today.
+          Primetrade.ai is a niche AI and blockchain venture studio helping multiple product startups
+          grow across cutting-edge fields—track their momentum below.
         </p>
       </div>
 

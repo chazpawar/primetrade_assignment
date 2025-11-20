@@ -71,15 +71,16 @@ export default function LoginPage() {
         <div className="w-full max-w-md">
           {/* Logo */}
           <div className="mb-12">
-           
-            
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight" style={{ color: 'var(--text-primary)' }}>
-              Step Beyond Routine.<br />
-              Work Intelligently.
+            <h1
+              className="text-4xl md:text-5xl font-bold mb-4 leading-tight"
+              style={{ color: 'var(--text-primary)' }}
+            >
+              Primetrade.ai Venture Studio
             </h1>
-            
+
             <p className="text-lg mb-8 leading-relaxed" style={{ color: 'var(--text-primary)' }}>
-              Ethron helps teams automate complex workflows, predict outcomes, and make faster decisions. All through an adaptive AI that learns how you work.
+              Primetrade.ai is a niche AI and blockchain venture studio, where we help multiple
+              product startups grow in cutting-edge fields of AI and blockchain technologies.
             </p>
           </div>
 
@@ -98,7 +99,7 @@ export default function LoginPage() {
               <Input
                 {...register("email")}
                 type="email"
-                label="Email Address"
+                label="Email Address  "
                 placeholder="you@example.com"
                 error={errors.email?.message}
                 disabled={isLoading}
