@@ -21,7 +21,8 @@ export function Card({ children, className = "", padding = "md" }: CardProps) {
 
   return (
     <div
-      className={`bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 ${paddingStyles[padding]} ${className}`}
+      className={`rounded-sm shadow-md border border-[#d2d2d2] ${paddingStyles[padding]} ${className}`}
+      style={{ backgroundColor: 'var(--card-bg)' }}
     >
       {children}
     </div>
@@ -44,11 +45,15 @@ export function CardHeader({ children, className = "" }: CardHeaderProps) {
 interface CardTitleProps {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-export function CardTitle({ children, className = "" }: CardTitleProps) {
+export function CardTitle({ children, className = "", style }: CardTitleProps) {
   return (
-    <h3 className={`text-xl font-semibold text-gray-900 dark:text-gray-100 ${className}`}>
+    <h3
+      className={`text-xl font-semibold ${className}`}
+      style={{ color: 'var(--text-primary)', ...style }}
+    >
       {children}
     </h3>
   );

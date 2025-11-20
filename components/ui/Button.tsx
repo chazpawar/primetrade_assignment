@@ -21,6 +21,7 @@ export function Button({
   disabled,
   children,
   className = "",
+  style,
   ...props
 }: ButtonProps) {
   const baseStyles =
@@ -30,11 +31,11 @@ export function Button({
     primary:
       "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500",
     secondary:
-      "bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600",
+      "bg-gray-200 hover:bg-gray-300 focus:ring-gray-500",
     danger:
       "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500",
     ghost:
-      "bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 focus:ring-gray-500",
+      "bg-transparent hover:bg-gray-100 focus:ring-gray-500",
   };
 
   const sizeStyles = {
@@ -43,12 +44,16 @@ export function Button({
     lg: "text-lg px-6 py-3 gap-2.5",
   };
 
+  const variantTextColor = variant === 'secondary' || variant === 'ghost' ? 'var(--text-primary)' : undefined;
+  const combinedStyle = variantTextColor ? { color: variantTextColor, ...style } : style;
+
   return (
     <button
       className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
       disabled={disabled || isLoading}
       aria-busy={isLoading}
       aria-disabled={disabled || isLoading}
+      style={combinedStyle}
       {...props}
     >
       {isLoading && (

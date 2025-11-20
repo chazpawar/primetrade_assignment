@@ -81,8 +81,8 @@ export default function DashboardPage() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400">Loading dashboard...</p>
+          <div className="w-12 h-12 border-4 border-t-transparent rounded-full animate-spin mx-auto mb-4" style={{ borderColor: 'var(--border-color)', borderTopColor: 'transparent' }}></div>
+          <p style={{ color: 'var(--text-primary)' }}>Loading dashboard...</p>
         </div>
       </div>
     );
@@ -92,10 +92,10 @@ export default function DashboardPage() {
     <div className="space-y-6">
       {/* Welcome Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+        <h1 className="text-3xl font-bold" style={{ color: 'var(--text-primary)' }}>
           Welcome back, {user?.name || "User"}!
         </h1>
-        <p className="mt-2 text-gray-600 dark:text-gray-400">
+        <p className="mt-2" style={{ color: 'var(--text-secondary)' }}>
           Here's what's happening with your account today.
         </p>
       </div>
@@ -106,15 +106,15 @@ export default function DashboardPage() {
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                <p className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
                   Total Entities
                 </p>
-                <p className="text-3xl font-bold text-gray-900 dark:text-gray-100 mt-2">
+                <p className="text-3xl font-bold mt-2" style={{ color: 'var(--text-primary)' }}>
                   {stats.totalEntities}
                 </p>
               </div>
-              <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                <Database className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              <div className="p-3 rounded-lg" style={{ backgroundColor: 'var(--card-inner)' }}>
+                <Database className="w-6 h-6" style={{ color: 'var(--text-primary)' }} />
               </div>
             </div>
           </CardContent>
@@ -124,15 +124,15 @@ export default function DashboardPage() {
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                <p className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
                   Active Entities
                 </p>
-                <p className="text-3xl font-bold text-gray-900 dark:text-gray-100 mt-2">
+                <p className="text-3xl font-bold mt-2" style={{ color: 'var(--text-primary)' }}>
                   {stats.activeEntities}
                 </p>
               </div>
-              <div className="p-3 bg-green-100 dark:bg-green-900/20 rounded-lg">
-                <TrendingUp className="w-6 h-6 text-green-600 dark:text-green-400" />
+              <div className="p-3 rounded-lg" style={{ backgroundColor: 'var(--card-inner)' }}>
+                <TrendingUp className="w-6 h-6" style={{ color: 'var(--text-primary)' }} />
               </div>
             </div>
           </CardContent>
@@ -142,15 +142,15 @@ export default function DashboardPage() {
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                <p className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
                   Member Since
                 </p>
-                <p className="text-lg font-bold text-gray-900 dark:text-gray-100 mt-2">
+                <p className="text-lg font-bold mt-2" style={{ color: 'var(--text-primary)' }}>
                   {stats.memberSince}
                 </p>
               </div>
-              <div className="p-3 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-                <Calendar className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+              <div className="p-3 rounded-lg" style={{ backgroundColor: 'var(--card-inner)' }}>
+                <Calendar className="w-6 h-6" style={{ color: 'var(--text-primary)' }} />
               </div>
             </div>
           </CardContent>
@@ -160,44 +160,46 @@ export default function DashboardPage() {
       {/* Quick Actions */}
       <Card>
         <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
+          <CardTitle style={{ color: 'var(--text-primary)' }}>Quick Actions</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Link
               href="/dashboard/entities"
-              className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group"
+              className="flex items-center justify-between p-4 rounded-lg hover:opacity-80 transition-colors group"
+              style={{ backgroundColor: 'var(--card-inner)' }}
             >
               <div className="flex items-center gap-3">
-                <Database className="w-5 h-5 text-blue-600" />
+                <Database className="w-5 h-5" style={{ color: 'var(--text-primary)' }} />
                 <div>
-                  <p className="font-medium text-gray-900 dark:text-gray-100">
+                  <p className="font-medium" style={{ color: 'var(--text-primary)' }}>
                     Manage Entities
                   </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                     View and edit your entities
                   </p>
                 </div>
               </div>
-              <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors" />
+              <ArrowRight className="w-5 h-5 transition-colors" style={{ color: '#313131', opacity: 0.5 }} />
             </Link>
 
             <Link
               href="/dashboard/profile"
-              className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group"
+              className="flex items-center justify-between p-4 rounded-lg hover:opacity-80 transition-colors group"
+              style={{ backgroundColor: 'var(--card-inner)' }}
             >
               <div className="flex items-center gap-3">
-                <User className="w-5 h-5 text-purple-600" />
+                <User className="w-5 h-5" style={{ color: 'var(--text-primary)' }} />
                 <div>
-                  <p className="font-medium text-gray-900 dark:text-gray-100">
+                  <p className="font-medium" style={{ color: 'var(--text-primary)' }}>
                     View Profile
                   </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                     Manage your account
                   </p>
                 </div>
               </div>
-              <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-purple-600 transition-colors" />
+              <ArrowRight className="w-5 h-5 transition-colors" style={{ color: '#313131', opacity: 0.5 }} />
             </Link>
           </div>
         </CardContent>
@@ -205,16 +207,16 @@ export default function DashboardPage() {
 
       {/* Getting Started */}
       {stats.totalEntities === 0 && (
-        <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-blue-200 dark:border-blue-800">
+        <Card>
           <CardContent className="pt-6">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+            <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
               Get Started
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <p className="mb-4" style={{ color: 'var(--text-secondary)' }}>
               You haven't created any entities yet. Start by creating your first entity!
             </p>
             <Link href="/dashboard/entities">
-              <Button variant="primary">
+              <Button variant="primary" style={{ backgroundColor: '#313131', color: 'white' }}>
                 <Database className="w-4 h-4" />
                 Create Your First Entity
               </Button>

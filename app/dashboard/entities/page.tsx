@@ -219,8 +219,8 @@ export default function EntitiesPage() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400">Loading entities...</p>
+          <div className="w-12 h-12 border-4 border-t-transparent rounded-full animate-spin mx-auto mb-4" style={{ borderColor: 'var(--border-color)', borderTopColor: 'transparent' }}></div>
+          <p style={{ color: 'var(--text-primary)' }}>Loading entities...</p>
         </div>
       </div>
     );
@@ -230,14 +230,14 @@ export default function EntitiesPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+          <h1 className="text-3xl font-bold" style={{ color: 'var(--text-primary)' }}>
             Entities
           </h1>
-          <p className="mt-2 text-gray-600 dark:text-gray-400">
+          <p className="mt-2" style={{ color: 'var(--text-secondary)' }}>
             Manage your entities with full CRUD operations
           </p>
         </div>
-        <Button onClick={() => setIsCreateModalOpen(true)} variant="primary">
+        <Button onClick={() => setIsCreateModalOpen(true)} variant="primary" style={{ backgroundColor: 'var(--text-primary)', color: 'white' }}>
           <Plus className="w-5 h-5" />
           Create Entity
         </Button>
@@ -248,20 +248,22 @@ export default function EntitiesPage() {
         <CardContent className="pt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" style={{ color: '#313131', opacity: 0.5 }} />
               <input
                 type="text"
                 placeholder="Search entities..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white"
+                style={{ borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
               />
             </div>
 
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white"
+              style={{ borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
             >
               <option value="">All Categories</option>
               {categories.map((cat) => (
@@ -274,7 +276,8 @@ export default function EntitiesPage() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white"
+              style={{ borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
             >
               <option value="">All Statuses</option>
               <option value="active">Active</option>
@@ -285,7 +288,8 @@ export default function EntitiesPage() {
             <select
               value={priorityFilter}
               onChange={(e) => setPriorityFilter(e.target.value)}
-              className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white"
+              style={{ borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
             >
               <option value="">All Priorities</option>
               <option value="low">Low</option>
@@ -300,8 +304,8 @@ export default function EntitiesPage() {
       {entities.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center">
-            <AlertCircle className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-600 dark:text-gray-400">
+            <AlertCircle className="w-12 h-12 mx-auto mb-4" style={{ color: '#313131', opacity: 0.4 }} />
+            <p style={{ color: 'var(--text-secondary)' }}>
               No entities found. Create your first entity to get started!
             </p>
           </CardContent>
@@ -313,24 +317,24 @@ export default function EntitiesPage() {
               <CardContent className="pt-6">
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                    <h3 className="text-lg font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
                       {entity.title}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+                    <p className="text-sm line-clamp-2" style={{ color: 'var(--text-secondary)' }}>
                       {entity.description || "No description"}
                     </p>
                   </div>
                   <div className="flex gap-2">
                     <button
                       onClick={() => openEditModal(entity)}
-                      className="p-2 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+                      className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                       aria-label="Edit entity"
                     >
                       <Edit2 className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => openDeleteModal(entity)}
-                      className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                      className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                       aria-label="Delete entity"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -339,7 +343,7 @@ export default function EntitiesPage() {
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  <span className="px-2 py-1 text-xs font-medium rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+                  <span className="px-2 py-1 text-xs font-medium rounded-full" style={{ backgroundColor: 'var(--card-inner)', color: 'var(--text-primary)' }}>
                     {entity.category}
                   </span>
                   <span
@@ -358,7 +362,7 @@ export default function EntitiesPage() {
                   </span>
                 </div>
 
-                <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
+                <div className="mt-4 text-xs" style={{ color: '#313131', opacity: 0.6 }}>
                   Created {new Date(entity.createdAt).toLocaleDateString()}
                 </div>
               </CardContent>
@@ -383,14 +387,15 @@ export default function EntitiesPage() {
           />
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+            <label className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-primary)' }}>
               Description
             </label>
             <textarea
               {...createForm.register("description")}
               placeholder="Enter entity description"
               rows={3}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white"
+              style={{ borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
             />
             {createForm.formState.errors.description && (
               <p className="mt-1.5 text-sm text-red-600">
@@ -408,12 +413,13 @@ export default function EntitiesPage() {
           />
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+            <label className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-primary)' }}>
               Priority
             </label>
             <select
               {...createForm.register("priority")}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white"
+              style={{ borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
             >
               <option value="low">Low</option>
               <option value="medium">Medium</option>
@@ -429,7 +435,7 @@ export default function EntitiesPage() {
             >
               Cancel
             </Button>
-            <Button type="submit" variant="primary" isLoading={isSubmitting}>
+            <Button type="submit" variant="primary" isLoading={isSubmitting} style={{ backgroundColor: 'var(--text-primary)', color: 'white' }}>
               Create Entity
             </Button>
           </div>
@@ -451,14 +457,15 @@ export default function EntitiesPage() {
           />
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+            <label className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-primary)' }}>
               Description
             </label>
             <textarea
               {...editForm.register("description")}
               placeholder="Enter entity description"
               rows={3}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white"
+              style={{ borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
             />
           </div>
 
@@ -470,12 +477,13 @@ export default function EntitiesPage() {
           />
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+            <label className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-primary)' }}>
               Status
             </label>
             <select
               {...editForm.register("status")}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white"
+              style={{ borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
             >
               <option value="active">Active</option>
               <option value="archived">Archived</option>
@@ -484,12 +492,13 @@ export default function EntitiesPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+            <label className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-primary)' }}>
               Priority
             </label>
             <select
               {...editForm.register("priority")}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white"
+              style={{ borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
             >
               <option value="low">Low</option>
               <option value="medium">Medium</option>
@@ -505,7 +514,7 @@ export default function EntitiesPage() {
             >
               Cancel
             </Button>
-            <Button type="submit" variant="primary" isLoading={isSubmitting}>
+            <Button type="submit" variant="primary" isLoading={isSubmitting} style={{ backgroundColor: 'var(--text-primary)', color: 'white' }}>
               Update Entity
             </Button>
           </div>

@@ -71,19 +71,22 @@ export function Modal({
     >
       <div
         ref={modalRef}
-        className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full ${sizeStyles[size]} animate-scaleIn`}
+        className={`rounded-lg shadow-xl w-full ${sizeStyles[size]} animate-scaleIn`}
+        style={{ backgroundColor: 'var(--card-bg)' }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-6">
           <h2
             id="modal-title"
-            className="text-xl font-semibold text-gray-900 dark:text-gray-100"
+            className="text-xl font-semibold"
+            style={{ color: 'var(--text-primary)' }}
           >
             {title}
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
+            className="transition-colors hover:opacity-60"
+            style={{ color: 'var(--text-primary)', opacity: 0.5 }}
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -120,7 +123,7 @@ export function ConfirmModal({
 }: ConfirmModalProps) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={title} size="sm">
-      <p className="text-gray-700 dark:text-gray-300 mb-6">{message}</p>
+      <p className="mb-6" style={{ color: 'var(--text-secondary)' }}>{message}</p>
       <div className="flex justify-end gap-3">
         <Button variant="secondary" onClick={onClose} disabled={isLoading}>
           {cancelText}

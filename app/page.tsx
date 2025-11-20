@@ -19,10 +19,10 @@ export default function Home() {
   }, [router]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-900">
+    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: 'var(--background)' }}>
       <div className="text-center">
-        <Loader2 className="w-8 h-8 animate-spin text-blue-600 mx-auto mb-4" />
-        <p className="text-gray-600 dark:text-gray-400">Loading...</p>
+        <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4" style={{ color: 'var(--text-primary)' }} />
+        <p className="text-lg" style={{ color: 'var(--text-primary)' }}>Loading...</p>
       </div>
     </div>
   );

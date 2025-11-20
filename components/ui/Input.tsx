@@ -20,20 +20,24 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
+            className="block text-sm font-medium mb-1.5"
+            style={{ color: 'var(--text-primary)' }}
           >
             {label}
-            {props.required && <span className="text-red-500 ml-1">*</span>}
           </label>
         )}
         <input
           ref={ref}
           id={inputId}
-          className={`w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+          className={`w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:border-transparent transition-colors ${
             error
               ? "border-red-500 focus:ring-red-500"
-              : "border-gray-300 dark:border-gray-600"
-          } bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 ${className}`}
+              : "focus:ring-gray-400"
+          } bg-white placeholder-gray-400 ${className}`}
+          style={{ 
+            borderColor: error ? undefined : 'var(--border-color)',
+            color: 'var(--text-primary)'
+          }}
           aria-invalid={error ? "true" : "false"}
           aria-describedby={
             error ? `${inputId}-error` : helperText ? `${inputId}-helper` : undefined
@@ -52,7 +56,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {helperText && !error && (
           <p
             id={`${inputId}-helper`}
-            className="mt-1.5 text-sm text-gray-500 dark:text-gray-400"
+            className="mt-1.5 text-sm"
+            style={{ color: 'var(--text-tertiary)' }}
           >
             {helperText}
           </p>

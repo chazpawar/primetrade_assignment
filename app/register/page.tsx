@@ -1,6 +1,6 @@
 /**
  * Register Page
- * User registration with password strength validation
+ * User registration with form validation
  */
 
 "use client";
@@ -10,10 +10,10 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import Image from "next/image";
 import { UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { registerSchema, type RegisterInput } from "@/lib/validations";
 
 export default function RegisterPage() {
@@ -25,41 +25,9 @@ export default function RegisterPage() {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm<RegisterInput>({
     resolver: zodResolver(registerSchema),
   });
-
-  const password = watch("password");
-
-  // Password strength indicator
-  const getPasswordStrength = (pwd: string) => {
-    if (!pwd) return { strength: 0, label: "", color: "" };
-
-    let strength = 0;
-    if (pwd.length >= 8) strength++;
-    if (/[a-z]/.test(pwd)) strength++;
-    if (/[A-Z]/.test(pwd)) strength++;
-    if (/[0-9]/.test(pwd)) strength++;
-    if (/[^a-zA-Z0-9]/.test(pwd)) strength++;
-
-    const labels = ["Weak", "Fair", "Good", "Strong", "Very Strong"];
-    const colors = [
-      "bg-red-500",
-      "bg-orange-500",
-      "bg-yellow-500",
-      "bg-green-500",
-      "bg-green-600",
-    ];
-
-    return {
-      strength: (strength / 5) * 100,
-      label: labels[strength - 1] || "",
-      color: colors[strength - 1] || "",
-    };
-  };
-
-  const passwordStrength = getPasswordStrength(password || "");
 
   const onSubmit = async (data: RegisterInput) => {
     setIsLoading(true);
@@ -97,26 +65,29 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 py-12">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-            Create Account
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            Sign up to get started with our platform
-          </p>
-        </div>
+    <div className="min-h-screen flex" style={{ backgroundColor: 'var(--background)' }}>
+      {/* Left Side - Registration Form */}
+      <div className="flex-1 flex items-center justify-center px-8 py-12" style={{ backgroundColor: 'var(--background)' }}>
+        <div className="w-full max-w-md">
+          {/* Logo */}
+          <div className="mb-12">
+            
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight" style={{ color: 'var(--text-primary)' }}>
+              Join Ethron.<br />
+              Start Working Smarter.
+            </h1>
+            
+            <p className="text-lg mb-8 leading-relaxed" style={{ color: 'var(--text-primary)' }}>
+              Create your account and experience the power of AI-driven workflow automation.
+            </p>
+          </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Register New Account</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Registration Form */}
+          <div className="space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
               {error && (
                 <div
-                  className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-800 dark:text-red-200 text-sm"
+                  className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm"
                   role="alert"
                 >
                   {error}
@@ -145,72 +116,60 @@ export default function RegisterPage() {
                 autoComplete="email"
               />
 
-              <div>
-                <Input
-                  {...register("password")}
-                  type="password"
-                  label="Password"
-                  placeholder="Create a strong password"
-                  error={errors.password?.message}
-                  disabled={isLoading}
-                  required
-                  autoComplete="new-password"
-                  helperText="Must be at least 8 characters with uppercase, lowercase, and number"
-                />
+              <Input
+                {...register("password")}
+                type="password"
+                label="Password"
+                placeholder="Create a strong password"
+                error={errors.password?.message}
+                disabled={isLoading}
+                required
+                autoComplete="new-password"
+              />
 
-                {password && password.length > 0 && (
-                  <div className="mt-2">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs text-gray-600 dark:text-gray-400">
-                        Password Strength:
-                      </span>
-                      <span
-                        className={`text-xs font-medium ${
-                          passwordStrength.strength >= 80
-                            ? "text-green-600"
-                            : passwordStrength.strength >= 60
-                            ? "text-yellow-600"
-                            : "text-red-600"
-                        }`}
-                      >
-                        {passwordStrength.label}
-                      </span>
-                    </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                      <div
-                        className={`${passwordStrength.color} h-2 rounded-full transition-all duration-300`}
-                        style={{ width: `${passwordStrength.strength}%` }}
-                      />
-                    </div>
-                  </div>
-                )}
+              <div className="flex gap-4">
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  isLoading={isLoading}
+                  className="flex-1"
+                  style={{ backgroundColor: 'var(--text-primary)', color: 'white' }}
+                >
+                  <UserPlus className="w-5 h-5" />
+                  Create Account
+                </Button>
               </div>
-
-              <Button
-                type="submit"
-                variant="primary"
-                size="lg"
-                isLoading={isLoading}
-                className="w-full"
-              >
-                <UserPlus className="w-5 h-5" />
-                Create Account
-              </Button>
             </form>
 
-            <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+            <div className="text-center pt-4">
+              <p className="text-sm" style={{ color: 'var(--text-primary)' }}>
                 Already have an account?{" "}
                 <Link
                   href="/login"
-                  className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
+                  className="font-medium underline hover:opacity-70"
+                  style={{ color: 'var(--text-primary)' }}
                 >
                   Sign in
                 </Link>
               </p>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Side - Image */}
+      <div className="hidden lg:flex flex-1 relative bg-gradient-to-br from-gray-100 to-gray-200">
+        <div className="relative w-full h-full">
+          <Image
+            src="/images/image2.png"
+            alt="Abstract holographic design"
+            fill
+            className="object-cover"
+            priority
+            quality={100}
+          />
+        </div>
       </div>
     </div>
   );

@@ -68,16 +68,17 @@ export default function DashboardLayout({
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--background)' }}>
       {/* Top Navigation Bar */}
-      <nav className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40" aria-label="Main navigation">
+      <nav className="sticky top-0 z-40" style={{ backgroundColor: 'var(--background)' }} aria-label="Main navigation">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               {/* Mobile menu button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 lg:hidden"
+                className="inline-flex items-center justify-center p-2 rounded-md hover:bg-gray-100 lg:hidden"
+                style={{ color: 'var(--text-primary)' }}
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="mobile-menu"
@@ -91,9 +92,9 @@ export default function DashboardLayout({
 
               {/* Logo */}
               <div className="flex-shrink-0 flex items-center ml-2 lg:ml-0">
-                <LayoutDashboard className="w-8 h-8 text-blue-600" aria-hidden="true" />
-                <span className="ml-2 text-xl font-bold text-gray-900 dark:text-gray-100">
-                  Dashboard
+                <LayoutDashboard className="w-8 h-8" style={{ color: 'var(--text-primary)' }} aria-hidden="true" />
+                <span className="ml-2 text-xl font-bold" style={{ color: 'var(--text-primary)' }}>
+                  Ethron
                 </span>
               </div>
             </div>
@@ -101,7 +102,7 @@ export default function DashboardLayout({
             {/* User info and logout */}
             <div className="flex items-center gap-4">
               {user && (
-                <div className="hidden sm:block text-sm text-gray-700 dark:text-gray-300" aria-label="Current user">
+                <div className="hidden sm:block text-sm" style={{ color: 'var(--text-primary)' }} aria-label="Current user">
                   <span className="font-medium">{user.name}</span>
                 </div>
               )}
@@ -109,7 +110,8 @@ export default function DashboardLayout({
                 variant="ghost"
                 size="sm"
                 onClick={handleLogout}
-                className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20"
+                className="hover:bg-gray-100"
+                style={{ color: 'var(--text-primary)' }}
                 aria-label="Logout from dashboard"
               >
                 <LogOut className="w-4 h-4" aria-hidden="true" />
@@ -121,7 +123,7 @@ export default function DashboardLayout({
 
         {/* Mobile menu */}
         {isMobileMenuOpen && (
-          <div id="mobile-menu" className="lg:hidden border-t border-gray-200 dark:border-gray-700">
+          <div id="mobile-menu" className="lg:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1" role="menu">
               {navigation.map((item) => {
                 const Icon = item.icon;
@@ -134,9 +136,10 @@ export default function DashboardLayout({
                     aria-current={item.active ? "page" : undefined}
                     className={`flex items-center gap-3 px-3 py-2 rounded-md text-base font-medium transition-colors ${
                       item.active
-                        ? "bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400"
-                        : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                        ? "bg-gray-100"
+                        : "hover:bg-gray-50"
                     }`}
+                    style={{ color: 'var(--text-primary)' }}
                   >
                     <Icon className="w-5 h-5" aria-hidden="true" />
                     {item.name}
@@ -150,7 +153,7 @@ export default function DashboardLayout({
 
       <div className="flex max-w-7xl mx-auto">
         {/* Sidebar - Desktop */}
-        <aside className="hidden lg:block w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 min-h-[calc(100vh-4rem)]" aria-label="Sidebar navigation">
+        <aside className="hidden lg:block w-64 min-h-[calc(100vh-4rem)]" style={{ backgroundColor: 'var(--background)' }} aria-label="Sidebar navigation">
           <nav className="p-4 space-y-2" role="navigation">
             {navigation.map((item) => {
               const Icon = item.icon;
@@ -161,9 +164,10 @@ export default function DashboardLayout({
                   aria-current={item.active ? "page" : undefined}
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                     item.active
-                      ? "bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400"
-                      : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                      ? "bg-gray-100"
+                      : "hover:bg-gray-50"
                   }`}
+                  style={{ color: 'var(--text-primary)' }}
                 >
                   <Icon className="w-5 h-5" aria-hidden="true" />
                   {item.name}
