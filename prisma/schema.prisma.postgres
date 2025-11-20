@@ -1,0 +1,45 @@
+// Prisma schema for scalable web application
+// Database: PostgreSQL (Vercel Postgres)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// User model for authentication
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  password  String   // Hashed with bcrypt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relation: One user can have many entities
+  entities  Entity[]
+}
+
+// Entity model for CRUD operations demo
+model Entity {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  category    String   // For filtering (e.g., "work", "personal", "project")
+  status      String   @default("active") // active, archived, deleted
+  priority    String   @default("medium") // low, medium, high
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Foreign key relation
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([category])
+  @@index([status])
+}
